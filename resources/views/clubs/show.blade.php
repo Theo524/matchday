@@ -1,51 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-layout :title="$club->name">
 
-<head>
-    <meta charset="UTF-8">
+    <section class="club-details">
 
-    {{-- Makes the page display correctly on phones. --}}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <h1>{{ $club->name }}</h1>
 
-    <title>{{ $club->name }} - Matchday</title>
-</head>
+        <div class="club-info">
 
-<body>
+            <p>
+                <strong>Stadium:</strong>
+                {{ $club->stadium }}
+            </p>
 
-    <header>
-        <h1>Matchday</h1>
+            <p>
+                <strong>City:</strong>
+                {{ $club->city }}
+            </p>
 
-        <nav>
-            <a href="/clubs">Clubs</a>
-        </nav>
-    </header>
+        </div>
 
-    <main>
-
-        <h2>{{ $club->name }}</h2>
-
-        <p>
-            <strong>Stadium:</strong>
-            {{ $club->stadium }}
-        </p>
-
-        <p>
-            <strong>City:</strong>
-            {{ $club->city }}
-        </p>
 
         @if ($club->description)
-            <p>
+
+            <p class="club-description">
                 {{ $club->description }}
             </p>
+
         @endif
 
-        <p>
-            <a href="/clubs">← Back to clubs</a>
-        </p>
 
-    </main>
+        <a href="{{ route('clubs.index') }}">
+            ← Back to clubs
+        </a>
 
-</body>
+    </section>
 
-</html>
+</x-layout>

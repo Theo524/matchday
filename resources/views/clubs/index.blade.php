@@ -1,43 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-layout title="Premier League Clubs">
 
-<head>
-    <meta charset="UTF-8">
+    <section class="page-heading">
 
-    {{-- Makes the page work properly on mobile screens. --}}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Premier League Clubs - Matchday</title>
-</head>
-
-<body>
-
-    <header>
-        <h1>Matchday</h1>
-
-        <nav>
-            <a href="/clubs">Clubs</a>
-        </nav>
-    </header>
-
-    <main>
-
-        <h2>Premier League Clubs</h2>
+        <h1>Premier League Clubs</h1>
 
         <p>
-            Browse Premier League clubs and view information about their stadiums.
+            Browse clubs and view information about their stadiums and locations.
         </p>
 
-        {{-- Loop through the clubs retrieved from MySQL. --}}
+    </section>
+
+
+    <section class="club-grid">
+
+        {{-- Display every club retrieved from MySQL. --}}
         @foreach ($clubs as $club)
 
-            <div>
+            <article class="club-card">
 
-                <h3>
-                    <a href="/clubs/{{ $club->id }}">
-                        {{ $club->name }}
-                    </a>
-                </h3>
+                <h2>{{ $club->name }}</h2>
 
                 <p>
                     <strong>Stadium:</strong>
@@ -49,18 +30,14 @@
                     {{ $club->city }}
                 </p>
 
-                <a href="/clubs/{{ $club->id }}">
-                    View club
+                <a href="{{ route('clubs.show', $club) }}">
+                    View club →
                 </a>
 
-            </div>
-
-            <hr>
+            </article>
 
         @endforeach
 
-    </main>
+    </section>
 
-</body>
-
-</html>
+</x-layout>
